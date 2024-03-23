@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+    url: string;
+}
+
+const { url } = Astro.props;
+
+---
+
+<div class="w-full h-40">
+    <div class="h-full w-full">
+	    <Image class="m-auto w-40 h-40" src={url} alt={url} width="160" height="160" loading="eager" />
+        <Image class="m-auto w-40 h-40 -translate-y-40 animate-ping " src={url} alt={url} width="160" height="160" loading="eager" />
+    </div>
+</div>

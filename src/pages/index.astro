@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CompanyImage from '../components/CompanyImage.astro';
+---
+
+<Layout title="Jacob Stovall - Software Developer">
+	<main class="max-w-5xl m-auto">
+		<div class="w-full pt-8">
+			<h1 class="text-5xl m-auto w-fit pb-2">Jacob Stovall</h1>
+			<h2 class="text-2xl m-auto w-fit">Software Developer for 7 Years</h2>
+		</div>
+		<div>
+			<h2 class="text-xl pt-10 pb-10 pl-4">Experience at companies like...</h2>
+			<div class="grid  grid-cols-1 sm:grid-cols-2 gap-4">
+				<CompanyImage url="/erthos_logo.jpg" />
+				<CompanyImage url="/ASU-logo.png" />
+				<CompanyImage url="/Transact_Logo.png" />
+				<CompanyImage url="/bluetail-stacked-logo.jpg" />
+				<CompanyImage url="/Microsoft_logo.svg.png" />
+				<CompanyImage url="/offerpad.png" />
+				<CompanyImage url="/sap.png" />
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+
+</style>
