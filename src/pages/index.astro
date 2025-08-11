@@ -1,27 +1,209 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CompanyImage from '../components/CompanyImage.astro';
+import '../styles/index.css';
+
+const feral = false;
+const dark = true;
+const years = 8;
+const ME = {
+  name: "Jacob Stovall",
+  title: "Senior Software Engineer",
+  location: "Arizona",
+  since: 2016,
+  tech: [
+    "C#/.NET","TypeScript","Node.js/Deno","React/Vue/Svelte","Tailwind","Azure (Functions, Service Bus, Cosmos, App Service, Etc.)","Piplines (ADO, Octo, Github, Etc.)","Docker/Kubernetes","SQL/No-SQL DBs"
+  ],
+};
+
+const JOBS: Array<{
+  company: string; role: string; period: string; points: string[];
+}> = [
+  {
+    company: "Carvana",
+    role: "Senior Software Engineer I",
+    period: "Aug 2024 — Present",
+    points: [
+      "Adesa Clear: Sale Schedule Table + filters (React, Styled Components, NX)",
+      "K8s migration: multi-region → single region (Azure YAML Pipelines)",
+      "C#/.NET Core service: inspections → predictive pricing model (Service Bus)",
+      "Spark 2024 Right at Home — Honorable Mention (peer-nominated)",
+    ],
+  },
+  {
+    company: "Erthos",
+    role: "Senior Software Engineer",
+    period: "Feb 2024 — Aug 2024",
+    points: [
+      "Fleet manager (React + Express) with auth & feature flags",
+      "Azure pipelines for bot builds + fleet deploys (~900% faster releases)",
+      "Time-series DB + Grafana for history, metrics, field debugging",
+      "Scheduled missions for regular autonomous bot deployments",
+    ],
+  },
+  {
+    company: "Transact Campus",
+    role: "Senior Software Engineer",
+    period: "Oct 2022 — Sep 2023",
+    points: [
+      "10+ microservices (C#, .NET Core, Azure Tables, Cosmos DB, Service Bus)",
+      "Tests: xUnit + Postman, ~90–100% coverage on PRs",
+      "Octopus Deploy + Power BI; query performance ≈5× faster",
+    ],
+  },
+  {
+    company: "Bluetail",
+    role: "Consulting Senior Software Engineer",
+    period: "Oct 2021 — Sep 2022",
+    points: [
+      "PEVN app (Postgres, Express, Vue, Node) for bulk docs; OCR blank-page detect + auto-rotation (~2× faster onboarding)",
+      "Page loads 10s–3m → sub-second via SQL + code tuning",
+      "Admin site perf + partner integrations (Express, Postgres, React)",
+    ],
+  },
+  {
+    company: "SAP",
+    role: "Senior Software Engineer",
+    period: "Dec 2016 — May 2021",
+    points: [
+      "SAPUI5/OpenUI5 apps (Planning Config Sets, Option Plans, etc.)",
+      "Custom controls: image-carousel dialog, pseudo-pivot table",
+      "OData via CDS views + ABAP",
+      "SAP Academy for Engineering (2nd cohort, ~50 selected)",
+      "Co-inventor on Manage Option Plans patent",
+    ],
+  },
+];
+
+const THREE_FACTS_ONE_LIE = [
+  "I learned the ABAP programming language (a COBOL language from 1983) on the job.",
+  "I've been to all 50 states.", // For anyone reading code this is the lie, only 43
+  "I did theater growing up and was nominated twice for national acting awards.",
+  "First C# job offer was from a C# code assessment in front of a panel. I had never worked with C# before the interview."
+];
+
+function mainClasses(feral: boolean) {
+  return `px-3 md:px-6 lg:px-10 py-6 md:py-10 ${feral ? "noise" : ""}`;
+}
 ---
 
-<Layout title="Jacob Stovall - Software Developer">
-	<main class="max-w-5xl m-auto">
-		<div class="w-full pt-8">
-			<h1 class="text-5xl m-auto w-fit pb-2">Jacob Stovall</h1>
-			<h2 class="text-2xl m-auto w-fit">Software Developer for 7 Years</h2>
-		</div>
-		<div>
-			<h2 class="text-xl pt-10 pb-10 pl-4">Experience at companies like...</h2>
-			<div class="grid  grid-cols-1 sm:grid-cols-2 gap-4">
-				<CompanyImage url="/erthos_logo.jpg" />
-				<CompanyImage url="/ASU-logo.png" />
-				<CompanyImage url="/Transact_Logo.png" />
-				<CompanyImage url="/bluetail-stacked-logo.jpg" />
-				<CompanyImage url="/Microsoft_logo.svg.png" />
-				<CompanyImage url="/offerpad.png" />
-				<CompanyImage url="/sap.png" />
-			</div>
-		</div>
-	</main>
+<Layout title="Jacob Stovall - Software Developer" description="Arizona based software developer since 2016.">
+  <div class={`${dark ? "bg-black text-white" : "bg-white text-black"} min-h-screen font-mono antialiased`}> 
+
+      <header class="border-b-8 border-current">
+        <div class="px-3 py-2 flex items-center justify-between gap-3">
+          <div class="uppercase tracking-tighter leading-none text-xl md:text-2xl">
+            {ME.name} // {ME.title} // {ME.location} (Always)
+          </div>
+          {/* For now just keep it simple
+          <div class="flex items-center gap-2">
+            <button onClick={()=>setFeral(v=>!v)} class="px-3 py-2 border-4 border-current active:translate-x-1 active:translate-y-1">
+              {feral ? "Tame layout" : "Break layout"}
+            </button>
+            <button onClick={()=>setDark(d=>!d)} class="px-3 py-2 border-4 border-current active:translate-x-1 active:translate-y-1" aria-pressed={dark}>
+              {dark?"Light":"Dark"}
+            </button>
+          </div>
+          */}
+        </div>
+        {/* marquee strip */}
+        <div class="overflow-hidden border-t-8 border-current">
+          <div class="whitespace-nowrap marquee text-sm">
+            <span class="inline-block px-2 py-2">OPEN TO INTERESTING TEAMS AND OPPORTUNITIES — {years}+ YEARS — WEB • SYSTEMS • JACK OF ALL TRADES — PLEASE CONTACT VIA LINKEDIN IF INTERESTED</span>
+            <span class="inline-block px-2 py-2">OPEN TO INTERESTING TEAMS AND OPPORTUNITIES — {years}+ YEARS — WEB • SYSTEMS • JACK OF ALL TRADES — PLEASE CONTACT VIA LINKEDIN IF INTERESTED</span>
+            <span class="inline-block px-2 py-2">OPEN TO INTERESTING TEAMS AND OPPORTUNITIES — {years}+ YEARS — WEB • SYSTEMS • JACK OF ALL TRADES — PLEASE CONTACT VIA LINKEDIN IF INTERESTED</span>
+          </div>
+        </div>
+      </header>
+
+      <main class={mainClasses(feral)}>
+        <div class={`grid grid-cols-12 auto-rows-[minmax(60px,_auto)] gap-3 md:gap-4 ${feral?"[&_*]:transition-transform [&_.card]:duration-200" : ""}`}>
+          <section class={`card col-span-12 md:col-span-8 lg:col-span-7 ${feral?"-rotate-1 -translate-y-1":""}`}>
+            <div class="border-8 border-current p-4 md:p-6">
+              <h1 class="uppercase font-black leading-[0.9] tracking-tighter text-[12vw] md:text-[9vw] lg:text-[7vw]" style={{textShadow:"8px 8px 0 currentColor"}}>
+                {ME.name}
+              </h1>
+              <p class="mt-3 md:mt-4 max-w-2xl text-sm md:text-base">
+              10x developer working primarily in C# and Typescript. Hard-working, detail-oriented, friendly. 
+              </p>
+            </div>
+          </section>
+
+          {/* STAT BLOCK */}
+          <aside class={`card col-span-12 md:col-span-4 lg:col-span-5 ${feral?"rotate-1 translate-y-1":""}`}>
+            <div class="border-8 border-current p-4">
+              <div class="grid grid-cols-2 gap-2 text-xs md:text-sm">
+                <div class="border-4 border-current p-2">BASE<br/><span class="text-lg md:text-xl">{ME.location}</span></div>
+                <div class="border-4 border-current p-2">EXPERIENCE<br/><span class="text-lg md:text-xl">{years}+ yrs</span></div>
+                <div class="border-4 border-current p-2">FOCUS<br/><span class="text-lg md:text-xl">Web / Systems</span></div>
+                <div class="border-4 border-current p-2">STATUS<br/><span class="text-lg md:text-xl">Open to chat</span></div>
+              </div>
+            </div>
+          </aside>
+
+          {/* Three Facts, One Lie: reversed color block */}
+          <section class={`card col-span-12 md:col-span-7 lg:col-span-6 ${feral?"-rotate-1":""}`}>
+            <div class={`${dark?"bg-white text-black":"bg-black text-white"} p-4 md:p-6 border-8 border-current`}> 
+              <h2 class="uppercase text-2xl md:text-3xl">Three Facts, One Lie</h2>
+              <div class="mt-4 text-sm md:text-base">
+                <ul class="mt-2 list-disc pl-5">
+                  {THREE_FACTS_ONE_LIE.map(t=> <li key={t}>{t}</li>)}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Skills */}
+          <div class={`card col-span-12 md:col-span-5 lg:col-span-6 ${feral?"rotate-1":""}`}>
+            <div class="border-8 border-current p-4">
+              <h2 class="uppercase text-2xl md:text-3xl">Skills</h2>
+              <ul class="mt-3 space-y-2 text-sm">
+                {ME.tech.map(skill=> (
+                  <li key={skill}>
+                    <span>➜ {skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* EXPERIENCE: two-column rule list */}
+          <section class={`card col-span-12 lg:col-span-12 ${!feral?"-rotate-1 -translate-y-1":""}`}>
+            <div class="border-8 border-current p-4 md:p-6">
+              <h2 class="uppercase text-2xl md:text-3xl">Experience</h2>
+              <div class="mt-4 space-y-6">
+                {JOBS.map(job => (
+                  <div key={job.company} class="grid md:grid-cols-3 gap-3 border-t-4 border-current pt-3 first:border-t-0 first:pt-0">
+                    <div class="uppercase text-base md:text-lg">{job.company}<div class="text-xs md:text-sm normal-case">{job.role}</div></div>
+                    <div class="text-xs md:text-sm">{job.period}</div>
+                    <ul class="text-sm md:col-span-2 list-[square] pl-5 space-y-1">
+                      {job.points.map((p,i)=>(<li key={i}>{p}</li>))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* CONTACT: harsh form imitation */}
+          <section class={`card col-span-12 ${feral?"-rotate-1":""}`}>
+            <div class="border-8 border-current p-4 md:p-6">
+              <h2 class="uppercase text-2xl md:text-3xl">Contact</h2>
+              <div class="mt-3 grid md:grid-cols-[1fr_auto] gap-3">
+                <p class="text-sm md:text-base">The fastest way to contact me is via LinkedIn. Feel free to send a connection request if we've worked together / are currently working together. However, please keep it to just a message for any inquiries and I will get back to you ASAP.</p>
+                <a href="https://www.linkedin.com/in/jacob-stovall/" class="place-self-start md:place-self-end border-8 border-current px-4 py-3 active:translate-x-1 active:translate-y-1 uppercase">
+                  LINKEDIN
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="border-t-8 border-current px-3 md:px-6 lg:px-10 py-4 text-xs text-right">
+        <span class="inline-block border-4 border-current px-2 py-1">© {new Date().getFullYear()} {ME.name} — Built with Astro + Tailwind.</span>
+      </footer>
+  </div>
 </Layout>
 
 <style>
