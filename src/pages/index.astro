@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CompanyImage from '../components/CompanyImage.astro';
 import '../styles/index.css';
 
 const feral = false;
@@ -147,7 +146,7 @@ function mainClasses(feral: boolean) {
               <h2 class="uppercase text-2xl md:text-3xl">Three Facts, One Lie</h2>
               <div class="mt-4 text-sm md:text-base">
                 <ul class="mt-2 list-disc pl-5">
-                  {THREE_FACTS_ONE_LIE.map(t=> <li key={t}>{t}</li>)}
+                  {THREE_FACTS_ONE_LIE.map(t=> <li>{t}</li>)}
                 </ul>
               </div>
             </div>
@@ -159,7 +158,7 @@ function mainClasses(feral: boolean) {
               <h2 class="uppercase text-2xl md:text-3xl">Skills</h2>
               <ul class="mt-3 space-y-2 text-sm">
                 {ME.tech.map(skill=> (
-                  <li key={skill}>
+                  <li>
                     <span>➜ {skill}</span>
                   </li>
                 ))}
@@ -173,11 +172,11 @@ function mainClasses(feral: boolean) {
               <h2 class="uppercase text-2xl md:text-3xl">Experience</h2>
               <div class="mt-4 space-y-6">
                 {JOBS.map(job => (
-                  <div key={job.company} class="grid md:grid-cols-3 gap-3 border-t-4 border-current pt-3 first:border-t-0 first:pt-0">
+                  <div class="grid md:grid-cols-3 gap-3 border-t-4 border-current pt-3 first:border-t-0 first:pt-0">
                     <div class="uppercase text-base md:text-lg">{job.company}<div class="text-xs md:text-sm normal-case">{job.role}</div></div>
                     <div class="text-xs md:text-sm">{job.period}</div>
                     <ul class="text-sm md:col-span-2 list-[square] pl-5 space-y-1">
-                      {job.points.map((p,i)=>(<li key={i}>{p}</li>))}
+                      {job.points.map((p)=>(<li>{p}</li>))}
                     </ul>
                   </div>
                 ))}
