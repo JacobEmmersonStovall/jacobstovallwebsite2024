@@ -214,7 +214,7 @@ const THREE_FACTS_ONE_LIE = [
         const themeBtn = document.getElementById('theme-btn')!;
         function applyFeral() {
           document.querySelectorAll('[data-feral-class]').forEach((el) => {
-            const classes = (el.getAttribute('data-feral-class') || '').split(' ').filter(Boolean);
+            const classes = (el.getAttribute('data-feral-class') || '').split(' ');
             classes.forEach((cls) => {
               if (feral) {
                 el.classList.add(cls);
@@ -227,8 +227,8 @@ const THREE_FACTS_ONE_LIE = [
         }
         function applyDark() {
           document.querySelectorAll('[data-dark-class]').forEach((el) => {
-            const darkClasses = (el.getAttribute('data-dark-class') || '').split(' ').filter(Boolean);
-            const lightClasses = (el.getAttribute('data-light-class') || '').split(' ').filter(Boolean);
+            const darkClasses = (el.getAttribute('data-dark-class') || '').split(' ');
+            const lightClasses = (el.getAttribute('data-light-class') || '').split(' ');
             if (dark) {
               lightClasses.forEach((cls) => el.classList.remove(cls));
               darkClasses.forEach((cls) => el.classList.add(cls));
@@ -242,8 +242,6 @@ const THREE_FACTS_ONE_LIE = [
         }
         feralBtn.addEventListener('click', () => { feral = !feral; applyFeral(); });
         themeBtn.addEventListener('click', () => { dark = !dark; applyDark(); });
-        applyFeral();
-        applyDark();
       </script>
   </div>
 </Layout>
