@@ -84,7 +84,12 @@ const THREE_FACTS_ONE_LIE = [
 ---
 
 <Layout title="Jacob Stovall - Software Developer" description="Arizona based software developer since 2016.">
-  <div id="page" class="min-h-screen font-mono antialiased bg-white text-black dark:bg-black dark:text-white">
+  <div
+    id="page"
+    class={`${dark ? "bg-black text-white" : "bg-white text-black"} min-h-screen font-mono antialiased`}
+    data-dark-class="bg-black text-white"
+    data-light-class="bg-white text-black"
+  >
 
       <header class="border-b-8 border-current">
         <div class="px-3 py-2 flex items-center justify-between gap-3">
@@ -137,7 +142,12 @@ const THREE_FACTS_ONE_LIE = [
 
           {/* Three Facts, One Lie: reversed color block */}
           <section class="card col-span-12 md:col-span-7 lg:col-span-6" data-feral-class="-rotate-1">
-            <div class="p-4 md:p-6 border-8 border-current bg-black text-white dark:bg-white dark:text-black">
+            <div
+              id="facts-block"
+              class={`${dark ? "bg-white text-black" : "bg-black text-white"} p-4 md:p-6 border-8 border-current`}
+              data-dark-class="bg-white text-black"
+              data-light-class="bg-black text-white"
+            >
               <h2 class="uppercase text-2xl md:text-3xl">Three Facts, One Lie</h2>
               <div class="mt-4 text-sm md:text-base">
                 <ul class="mt-2 list-disc pl-5">
@@ -200,7 +210,6 @@ const THREE_FACTS_ONE_LIE = [
       <script>
         let feral = false;
         let dark = true;
-        const root = document.documentElement;
         const feralBtn = document.getElementById('feral-btn')!;
         const themeBtn = document.getElementById('theme-btn')!;
         function applyFeral() {
@@ -217,7 +226,17 @@ const THREE_FACTS_ONE_LIE = [
           feralBtn.textContent = feral ? 'Tame layout' : 'Break layout';
         }
         function applyDark() {
-          root.classList.toggle('dark', dark);
+          document.querySelectorAll('[data-dark-class]').forEach((el) => {
+            const darkClasses = (el.getAttribute('data-dark-class') || '').split(' ').filter(Boolean);
+            const lightClasses = (el.getAttribute('data-light-class') || '').split(' ').filter(Boolean);
+            if (dark) {
+              lightClasses.forEach((cls) => el.classList.remove(cls));
+              darkClasses.forEach((cls) => el.classList.add(cls));
+            } else {
+              darkClasses.forEach((cls) => el.classList.remove(cls));
+              lightClasses.forEach((cls) => el.classList.add(cls));
+            }
+          });
           themeBtn.setAttribute('aria-pressed', dark.toString());
           themeBtn.textContent = dark ? 'Light' : 'Dark';
         }
